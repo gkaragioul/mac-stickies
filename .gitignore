@@ -12,3 +12,6 @@ DerivedData/
 
 # Build artifacts
 BuildArtifacts/
+dist-mac/
+test/
+.build/

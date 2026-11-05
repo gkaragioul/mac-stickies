@@ -1,125 +1,70 @@
+[← All software](https://github.com/gkaragioul/software)
 
-<p align="center">
-  <img src="Assets/IconGen/AppIcon1024.png" alt="Mac Stickies app icon" width="180">
-</p>
+# Mac Stickies
 
-<h1 align="center">Mac Stickies</h1>
+<img src="images/screenshot-1.jpg" alt="Mac Stickies: three coloured sticky notes floating on the desktop" width="100%">
 
-<p align="center">
-  <strong>Lightweight menu bar sticky notes for your Mac desktop.</strong><br>
-  <em>Create floating notes, pin them, color them, and keep everything saved locally.</em>
-</p>
+Sticky notes that float on your Mac's desktop, run from a small icon in the menu bar.
 
-<p align="center">
-  <a href="#features">Features</a> &bull;
-  <a href="https://github.com/gkaragioul/Mac_Stickies/releases/latest">Download</a> &bull;
-  <a href="#building-and-running">Build</a> &bull;
-  <a href="#how-it-works">Usage</a> &bull;
-  <a href="#license">License</a>
-</p>
+| | |
+|---|---|
+| **Download** | [⬇️ Mac (.dmg)](https://github.com/gkaragioul/mac-stickies/releases/latest/download/Mac-Stickies-mac.dmg) |
+| **Version** | ![latest version](https://img.shields.io/github/v/release/gkaragioul/mac-stickies?label=) · [what's new](https://github.com/gkaragioul/mac-stickies/releases) |
+| **Runs on** | Macs with macOS 13 Ventura or newer (Apple silicon or Intel) |
+| **Price** | Free |
+| **Licence** | MIT: free to use, change and share |
 
-<p align="center">
-  <a href="https://buymeacoffee.com/gkaragioul"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a><br>
-  <sub>Free to download and use. Tips are voluntary and don't buy support or a warranty.</sub>
-</p>
+## What it does
 
-<p align="center">
-  <a href="https://github.com/gkaragioul/Mac_Stickies/releases/latest"><strong>Download Mac Stickies for macOS</strong></a>
-</p>
+- **As many notes as you like,** each with a title and text, saved as you type.
+- **Six colours:** Ocean, Forest, Plum, Cherry, Slate and Amber.
+- **Move and resize them** anywhere. They stay on every desktop Space.
+- **Pin a note** to keep it on top of other windows.
+- **Hide and show** one note or all of them from the menu bar.
+- **Back up and restore:** export all your notes to a file, and import them again.
+- **Keyboard:** ⌘N makes a new note.
 
----
+## Install
 
-> **This repository is archived and read-only.** Mac Stickies is no longer maintained: no further updates, bug fixes, or feature additions will be made, and new issues and pull requests are not accepted. The app is fully functional as-is; feel free to fork it and make it your own under the MIT License.
+1. **Download** the file above.
+2. **Open** it, and **drag Mac Stickies onto the Applications folder**.
+3. **Double-click Mac Stickies** in Applications. macOS says it was **"Not Opened"**. This is normal for apps that aren't sold through Apple. Click **Done**.
+4. **Allow it once:** open **Apple menu › System Settings › Privacy & Security**, scroll down to **Security**, and next to "Mac Stickies was blocked" click **Open Anyway**, then **Open Anyway** again.
 
-A lightweight menu bar sticky notes app for macOS, built with SwiftUI and AppKit. No external dependencies.
+It has no Dock icon: look for the note icon in the menu bar, at the top right of the screen.
 
-## Features
+## How to use it
 
-- Menu bar app with no dock icon clutter
-- Create unlimited sticky notes that float on your desktop
-- Drag and resize notes anywhere, across all Spaces
-- Edit note title and body with live auto-save
-- Pin notes to keep them always on top
-- 6 built-in color themes: Ocean, Forest, Plum, Cherry, Slate, Amber
-- Show or hide individual notes, or all notes at once
-- Export and import notes as JSON backups
-- Notes persist locally and restore automatically on launch
-- Keyboard shortcuts: Cmd+N for a new note, Cmd+Q to quit
+1. Click the note icon in the menu bar and choose **New Sticky Note** (or press ⌘N).
+2. Type a title and your note. It saves by itself.
+3. Use the menu bar icon to change a note's colour, pin it, hide it or delete it, and to back up your notes with **Export Backup** and **Import Backup**.
 
-## Requirements
+## Privacy
 
-- macOS 13 Ventura or later
-- Xcode 15+ with Swift 5.9+
+- Your notes stay on your Mac, in `~/Library/Application Support/StickyNotesApp/notes.json`.
+- Nothing is sent anywhere. There are no accounts, no tracking and no update checks.
 
-## Building and Running
+## If something goes wrong
 
-### Option 1: Xcode
+- **"Saved notes could not be read":** the notes file was damaged. Mac Stickies keeps a copy of the damaged file next to it, so you can try to recover it. Import a backup if you have one.
+- **To report a problem:** [open an issue](https://github.com/gkaragioul/mac-stickies/issues).
+- **To uninstall:** quit it from the menu bar, drag it to the Bin, and delete the `StickyNotesApp` folder above if you don't want to keep your notes.
 
-```bash
-git clone https://github.com/gkaragioul/Mac_Stickies.git
-cd Mac_Stickies
-```
+Mac Stickies is finished: it does what it does, and no big new features are planned.
 
-Open `Package.swift` in Xcode, select the **StickyNotesApp** scheme, then run with Cmd+R. The app appears as a note icon in your menu bar.
+## Build it yourself
 
-### Option 2: Terminal
+With Xcode or the Command Line Tools (Swift 5.9 or newer):
 
 ```bash
-git clone https://github.com/gkaragioul/Mac_Stickies.git
-cd Mac_Stickies
-swift run StickyNotesApp
+./build-mac.sh
 ```
 
-## Creating a Standalone .app Bundle
+It builds a universal app (Apple silicon and Intel) and the DMG in `dist-mac/`. Run the tests with `swift test`.
 
-You can archive from Xcode with **Product > Archive**, then use **Distribute App > Copy App**.
+## Licence and credits
 
-If you wrap a release build manually, include the MIT license next to the app resources so redistributed copies preserve the required notice:
+- **Licence:** Mac Stickies is MIT licensed (see [LICENSE](LICENSE)). You can use, change and share it freely, as long as you keep the copyright notice.
+- It uses only Apple's own frameworks.
 
-```bash
-swift build -c release
-
-APP="Mac Stickies.app"
-mkdir -p "$APP/Contents/MacOS"
-mkdir -p "$APP/Contents/Resources"
-
-cp .build/release/StickyNotesApp "$APP/Contents/MacOS/"
-cp Assets/IconGen/AppIcon.icns "$APP/Contents/Resources/"
-cp LICENSE "$APP/Contents/Resources/LICENSE.txt"
-```
-
-`LSUIElement` should be set to `true` in the app bundle Info.plist so the app runs as a menu bar utility without a dock icon.
-
-## How It Works
-
-The app runs as a menu bar accessory. Clicking the note icon gives you controls to:
-
-- Create a new floating sticky note
-- Show, hide, pin, recolor, or delete each note
-- Show or hide all notes at once
-- Export or import notes as JSON backups
-
-Notes are saved locally to `~/Library/Application Support/StickyNotesApp/notes.json`. The app has no telemetry, network sync, or third-party runtime dependencies.
-
-## Architecture
-
-| File | Purpose |
-|------|---------|
-| `StickyNotesApp.swift` | App entry point and menu bar scene setup |
-| `MenuBarView.swift` | Menu bar UI and user actions |
-| `Note.swift` | Data model with color palette definitions |
-| `NoteStore.swift` | JSON persistence, import/export, state management |
-| `NoteWindowManager.swift` | Window lifecycle for all notes |
-| `NoteWindowController.swift` | Individual NSWindow setup |
-| `StickyNoteView.swift` | SwiftUI note editor view |
-| `Color+Hex.swift` | Hex color parsing utilities |
-
-## Disclaimer
-
-Mac Stickies is provided as is, without warranty of any kind, under the [MIT License](LICENSE). Use it at your own risk; you are responsible for how you use it. Deleting a note is immediate and cannot be undone, and importing a JSON backup replaces all current notes, so export a backup first and don't keep the only copy of anything important in it.
-
-## License
-
-Mac Stickies is released under the [MIT License](LICENSE).
-
-Copyright (c) 2026 George Karagioules.
+*Not affiliated with Apple. Made by [George Karangioules](https://github.com/gkaragioul).*
